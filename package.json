@@ -1,0 +1,136 @@
+{
+  "name": "altus",
+  "productName": "Altus",
+  "version": "4.5.3",
+  "description": "Desktop client for WhatsApp Web with themes & multiple account support.",
+  "main": "src/index.js",
+  "homepage": "https://gitlab.com/amanharwara/altus",
+  "repository": {
+    "url": "https://gitlab.com/amanharwara/altus"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/amanharwara/altus/-/issues"
+  },
+  "scripts": {
+    "start": "concurrently \"npm:svelte-dev\" \"electron .\"",
+    "package": "electron-builder --dir",
+    "build": "yarn svelte-build && electron-builder",
+    "svelte-build": "rollup -c",
+    "svelte-dev": "rollup -c -w",
+    "svelte-start": "sirv public"
+  },
+  "keywords": [
+    "whatsapp",
+    "whatsapp web",
+    "whatsapp themes"
+  ],
+  "author": {
+    "name": "Aman Harwara",
+    "email": "amanharwara@protonmail.com"
+  },
+  "license": "GPL-3.0",
+  "build": {
+    "appId": "harwara.aman.altus",
+    "productName": "Altus",
+    "protocols": [
+      {
+        "name": "whatsapp",
+        "role": "Viewer",
+        "schemes": [
+          "whatsapp"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.social-networking",
+      "icon": "src/icons/icon.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "dmg": {
+      "background": "img/background.png",
+      "icon": "src/icons/icon.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 380,
+          "y": 260,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 110,
+          "y": 260,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 400
+      }
+    },
+    "nsis": {
+      "installerSidebar": "img/installerSidebar.bmp",
+      "oneClick": "false",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "allowToChangeInstallationDirectory": "true"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "src/icons/icon.ico"
+    },
+    "linux": {
+      "category": "Chat",
+      "target": [
+        "AppImage"
+      ],
+      "icon": "src/icons/icon.png"
+    }
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.5",
+    "concurrently": "^6.2.0",
+    "dragula": "^3.7.3",
+    "electron-context-menu": "^3.1.1",
+    "electron-dl": "^3.2.1",
+    "electron-reload": "^1.5.0",
+    "electron-store": "^8.0.0",
+    "i18next": "^20.3.5",
+    "i18next-node-fs-backend": "^2.1.3",
+    "node-fetch": "^2.6.1",
+    "sass": "^1.35.2",
+    "sirv-cli": "^1.0.12",
+    "stylus": "^0.54.8",
+    "svelte-select": "^4.2.6",
+    "tslib": "^2.3.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "19.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@rollup/plugin-typescript": "^8.2.3",
+    "@tsconfig/svelte": "^2.0.1",
+    "@types/node": "^16.3.3",
+    "electron": "^15.3.0",
+    "electron-builder": "^22.11.7",
+    "rollup": "^2.53.2",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.38.3",
+    "svelte-check": "^2.2.3",
+    "svelte-preprocess": "^4.7.4",
+    "typescript": "^4.3.5"
+  }
+}
